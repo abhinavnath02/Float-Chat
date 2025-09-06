@@ -13,7 +13,7 @@ const Home = () => {
         </div>
         <div className='absolute inset-0 flex top-100 pl-[35%]'>
           <h1 className='text-white text-4xl md:text-6xl font-bold tracking-wide drop-shadow-lg'>
-            FLOAT-ChatBot
+            FLOAT-ChatBot - By Team Tatya
           </h1>
         </div>
       </div>
