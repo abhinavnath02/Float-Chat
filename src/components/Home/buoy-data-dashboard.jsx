@@ -33,7 +33,7 @@ const chartData = [
 
 export function BuoyDataDashboard() {
   return (
-    <div className="max-w-md mx-auto bg-white rounded-lg shadow-sm">
+    <div className="max-w-md mx-auto bg-white rounded-3xl shadow-sm">
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b">
         <div className="flex items-center gap-2">
