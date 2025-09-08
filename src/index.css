@@ -3,3 +3,12 @@
 body{
   background-color: #111;
 }
+
+html, body, .bg {
+  height: 100%;
+}
+
+.bg{
+  background: url('./image/image.png') no-repeat center center fixed;
+  background-size: cover;
+}
