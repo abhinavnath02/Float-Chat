@@ -1,14 +1,36 @@
 @import "tailwindcss";
 
-body{
+body {
   background-color: #111;
+  margin: 0;
+  padding: 0;
 }
 
-html, body, .bg {
+html,
+body,
+#root {
   height: 100%;
+  width: 100%;
 }
 
-.bg{
-  background: url('./image/image.png') no-repeat center center fixed;
+.bg {
+  height: 100%;
+  width: 100%;
+  /* Fallback background color */
+  background-color: #1a365d;
+  /* Try to load the image from assets folder */
+  background-image: url('/src/assets/react.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
   background-size: cover;
+  background-attachment: fixed;
+}
+
+/* If you add the actual ocean map image to public folder, use this instead */
+.ocean-bg {
+  background-image: url('/ocean-map.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
 }
