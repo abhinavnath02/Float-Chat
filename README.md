@@ -124,6 +124,10 @@ src/
 - Integrated search and dashboard components
 - Responsive layout design
 
+## Screenshots
+![Homepage](project_homepage.png)
+Homepage  
+
 ## Configuration
 
 The application uses:
