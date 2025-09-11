@@ -9,21 +9,27 @@ A React-based web application for visualizing and interacting with oceanographic
 - **Buoy Dashboard**: Detailed metadata and parameter visualization for individual floats
 - **Regional Overview**: Statistics for active floats in different ocean regions
 - **Responsive Design**: Modern UI with Tailwind CSS styling
+- **Hero + Search**: Prominent title with a centered search bar; Enter key currently shows a notification (placeholder until backend integration)
+- **Float Data Dashboard**: Compact card with parameter selection, responsive line chart using Recharts, and metadata display
+- **Indian Ocean Region Summary**: Quick stats widget for active floats, average temperature, and last update time
+- **Modern UI Components**: Reusable Button and Card primitives
+- **Asset-backed Visuals**: Background image/video support
 
 ## Tech Stack
 
 - **Frontend**: React 19.1.1 with Vite
-- **Styling**: Tailwind CSS 4.1.13
+- **Styling**: Tailwind CSS 4.1.13 (via @tailwindcss/vite plugin)
 - **Charts**: Recharts for data visualization
-- **Icons**: Lucide React and React Icons
+- **Icons**: Lucide React, React Icons, and React Feather
 - **Routing**: React Router DOM
 - **Animation**: GSAP for smooth animations
+- **UI Components**: Radix UI for headless components
 
 ## Prerequisites
 
 Before running this application, make sure you have the following installed:
 
-- **Node.js** (version 16.x or higher)
+- **Node.js** (version 18+ LTS recommended)
 - **npm** or **yarn** package manager
 
 ## Installation
@@ -37,10 +43,6 @@ Before running this application, make sure you have the following installed:
 2. **Install dependencies**:
    ```bash
    npm install
-   ```
-   or
-   ```bash
-   yarn install
    ```
 
 ## Running the Application
@@ -102,6 +104,9 @@ src/
 ├── App.jsx                        # Main app component
 ├── main.jsx                       # Application entry point
 └── index.css                      # Global styles
+public/
+└── assets/
+    └── image/                     # Background images and assets
 ```
 
 ## Key Components
@@ -126,7 +131,13 @@ src/
 
 ## Screenshots
 ![Homepage](project_homepage.png)
-Homepage  
+
+## Environment & Assets
+
+- No environment variables are required at this stage
+- The search bar currently fetches mock users from `https://jsonplaceholder.typicode.com/users` to demonstrate filtering
+- Pressing Enter shows a temporary notification: "Backend Model not connected yet...."
+- Background image path used in `Video.jsx`: `/image/image.png` (ensure it exists under `public/assets/image/image.png`)
 
 ## Configuration
 
@@ -143,6 +154,22 @@ The application uses:
 - `npm run lint` - Run ESLint
 - `npm run preview` - Preview production build
 
+## Dependencies
+
+### Runtime Dependencies
+- `react`, `react-dom` - Core React framework
+- `react-router-dom` - Client-side routing
+- `recharts` - Data visualization charts
+- `lucide-react`, `react-icons`, `react-feather` - Icon libraries
+- `tailwindcss`, `@tailwindcss/vite` - Utility-first CSS framework
+- `gsap` - Animation library
+- `radix-ui` - Headless UI components
+
+### Development Dependencies
+- `vite`, `@vitejs/plugin-react` - Build tool and React plugin
+- `eslint` and related plugins - Code linting
+- `@types/react`, `@types/react-dom` - TypeScript definitions
+
 ## Browser Support
 
 This application supports all modern browsers that support ES2020 features.
@@ -155,11 +182,7 @@ This application supports all modern browsers that support ES2020 features.
 4. Push to the branch (`git push origin feature/new-feature`)
 5. Create a Pull Request
 
-## License
-
-This project is licensed under the MIT License.
-
-## Future Enhancements
+## Roadmap
 
 - [ ] Connect to real oceanographic data API
 - [ ] Add more chart types and visualization options
@@ -167,6 +190,13 @@ This project is licensed under the MIT License.
 - [ ] Add data export functionality
 - [ ] Mobile app version
 - [ ] Real-time data streaming
+- [ ] Integrate real backend for float data search and retrieval
+- [ ] Connect charts to live data (pressure, temperature, salinity over time)
+- [ ] Enhance map/region overview with real-time stats
+
+## License
+
+This project is licensed under the MIT License.
 
 ## Support
 
