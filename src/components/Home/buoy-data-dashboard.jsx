@@ -2,7 +2,7 @@
 
 import { Card } from "../ui/card"
 import { Button } from "../ui/button"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../Home/select"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./select"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from "recharts"
 import { Settings, Menu, BarChart3, ToggleLeft } from "lucide-react"
 
@@ -33,9 +33,9 @@ const chartData = [
 
 export function BuoyDataDashboard() {
   return (
-    <div className="max-w-md mx-auto bg-white rounded-3xl shadow-sm">
+    <div className="w-80 mx-auto bg-white rounded-3xl shadow-lg">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b">
+      <div className="flex items-center justify-between p-4 border-b border-gray-200">
         <div className="flex items-center gap-2">
           <span className="text-cyan-500 font-medium">Float:</span>
           <span className="font-semibold text-gray-900">IND0040</span>
@@ -56,13 +56,13 @@ export function BuoyDataDashboard() {
           <div className="flex-1">
             <label className="text-sm text-cyan-500 font-medium mb-2 block">Select Parameter</label>
             <Select defaultValue="pressure">
-              <SelectTrigger className="w-full bg-white border-0">
+              <SelectTrigger className="w-full bg-white border border-gray-200 rounded-md">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
-                <SelectItem className='bg-white' value="pressure">Pressure</SelectItem>
-                <SelectItem className='bg-white' value="temperature">Temperature</SelectItem>
-                <SelectItem className='bg-white' value="salinity">Salinity</SelectItem>
+              <SelectContent className="bg-white">
+                <SelectItem className='bg-white hover:bg-gray-50' value="pressure">Pressure</SelectItem>
+                <SelectItem className='bg-white hover:bg-gray-50' value="temperature">Temperature</SelectItem>
+                <SelectItem className='bg-white hover:bg-gray-50' value="salinity">Salinity</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -77,10 +77,10 @@ export function BuoyDataDashboard() {
         </div>
 
         {/* Chart */}
-        <Card className="p-4 bg-gray-50 border-0">
+        <Card className="p-4 bg-gray-50 border-0 rounded-xl">
           <div className="h-48">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={chartData}>
+              <LineChart data={chartData} margin={{ top: 5, right: 5, left: 5, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                 <XAxis
                   dataKey="date"
@@ -94,9 +94,16 @@ export function BuoyDataDashboard() {
                   axisLine={false}
                   tickLine={false}
                   tick={{ fontSize: 10, fill: "#6b7280" }}
-                  ticks={[995, 1000, 1005, 1010]}
+                  tickCount={5}
                 />
-                <Line type="monotone" dataKey="value" stroke="#60a5fa" strokeWidth={2} dot={false} />
+                <Line
+                  type="monotone"
+                  dataKey="value"
+                  stroke="#06b6d4"
+                  strokeWidth={2}
+                  dot={false}
+                  strokeLinecap="round"
+                />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -105,18 +112,18 @@ export function BuoyDataDashboard() {
         {/* Metadata */}
         <div>
           <h3 className="text-cyan-500 font-medium mb-3">Metadata</h3>
-          <Card className="p-4 bg-gray-100 border-0 space-y-2">
-            <div className="text-sm">
+          <Card className="p-4 bg-gray-100 border-0 rounded-xl space-y-3">
+            <div className="text-sm flex justify-between">
               <span className="text-gray-600">Buoy ID:</span>
-              <span className="ml-2 font-medium text-gray-900">AD06</span>
+              <span className="font-medium text-gray-900">AD06</span>
             </div>
-            <div className="text-sm">
+            <div className="text-sm flex justify-between">
               <span className="text-gray-600">Latitude:</span>
-              <span className="ml-2 font-medium text-gray-900">18.274011</span>
+              <span className="font-medium text-gray-900">18.274011°</span>
             </div>
-            <div className="text-sm">
+            <div className="text-sm flex justify-between">
               <span className="text-gray-600">Longitude:</span>
-              <span className="ml-2 font-medium text-gray-900">67.225067</span>
+              <span className="font-medium text-gray-900">67.225067°</span>
             </div>
           </Card>
         </div>
