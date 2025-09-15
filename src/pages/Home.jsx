@@ -1,67 +1,96 @@
-import React from 'react';
-import Video from '../components/Home/Video';
-import { SearchBar } from '../components/Home/SearchBar';
-import { BuoyDataDashboard } from '../components/Home/buoy-data-dashboard';
+// import React from "react";
+// import { Map, Marker } from "@vis.gl/react-maplibre";
 
-const Home = () => {
+// const Home = () => {
+//   // Generate a random point within bounds
+//   const minLng = 60, maxLng = 100, minLat = -40, maxLat = 35;
+//   const randomLng = Math.random() * (maxLng - minLng) + minLng;
+//   const randomLat = Math.random() * (maxLat - minLat) + minLat;
+//   return (
+//     <div className="grid grid-cols-2 grid-rows-2 h-screen w-screen gap-2 bg-white p-2">
+//       {/* First cell spanning two rows */}
+//       <div className="row-span-2 bg-white flex items-center justify-center text-white text-2xl font-bold ">
+//         <Map className= "rounded-3xl"
+//           initialViewState={{
+//             longitude: 78,
+//             latitude: 15,
+//             zoom: 3,
+//             attributionControl: false,
+//           }}
+//           maxBounds={[[60, -40], [100, 35]]
+            
+//           }
+//           mapStyle="/styles/dark.json"
+//         >
+//           <Marker longitude={randomLng} latitude={randomLat} anchor="center">
+//             <div style={{
+//               width: 24,
+//               height: 24,
+//               borderRadius: "50%",
+//               background: "#ff0000",
+//               border: "2px solid #fff",
+//               boxShadow: "0 0 6px rgba(0,0,0,0.3)"
+//             }} />
+//           </Marker>
+//         </Map>
+//       </div>
+
+//       {/* Top-right cell */}
+//       <div className="bg-green-500 flex items-center justify-center text-white text-2xl font-bold rounded-3xl">
+//         Cell 2
+//       </div>
+
+//       {/* Bottom-right cell */}
+//       <div className="bg-red-500 flex items-center justify-center text-white text-2xl font-bold rounded-3xl">
+//         Cell 3
+//       </div>     
+//     </div>
+//   );
+// };
+
+// export default Home;
+
+import React, { useState } from "react";
+import Map from "../components/Map";
+import Button from "../components/UI/button";
+
+export default function Home() {
+  const [expanded, setExpanded] = useState(false);
+
   return (
-    <div className='h-screen w-screen relative overflow-hidden'>
-      {/* Background */}
-      <div className='bg absolute inset-0'>
-        <Video />
+    <div className="w-screen h-screen grid grid-cols-2">
+      {/* Cell 1: full height left column */}
+      <div className="bg-blue-500 flex items-center justify-center text-white text-xl">
+       <Map />
       </div>
 
-      {/* Main Content */}
-      <div className='relative z-10 h-full w-full'>
-        {/* Title */}
-        <div className='absolute top-16 left-1/2 transform -translate-x-1/2'>
-          <div className='relative'>
-            {/* White text (front layer) */}
-            <h1 className='text-white text-4xl md:text-6xl font-bold tracking-wide drop-shadow-lg text-center'>
-              FLOAT-Chat
-            </h1>
-            {/* Black text (shadow layer) */}
-            <h1 className='absolute top-0 left-0 text-black text-4xl md:text-6xl font-bold tracking-wide text-center transform translate-x-1 translate-y-1 opacity-30'>
-              FLOAT-Chat
-            </h1>
-          </div>
+      {/* Right column: flex column for smooth height animation */}
+      <div className="flex flex-col h-full">
+        {/* Cell 2 */}
+        <div
+          className={`bg-green-500 flex items-center justify-center text-white text-xl transition-all duration-700`}
+          style={{
+            flexGrow: expanded ? 1 : 10, // Big when collapsed, equal when expanded
+            flexShrink: 0,
+            flexBasis: 0,
+          }}
+        >
+        <Button>Hello</Button>
         </div>
 
-        {/* Search Bar */}
-        <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 w-full px-8 z-50">
-          <div className="max-w-2xl mx-auto">
-            <SearchBar />
-          </div>
-        </div>
-
-        {/* Regional Statistics Card */}
-        <div className="absolute bottom-4 left-4 w-64 bg-white/90 backdrop-blur-sm rounded-xl shadow-xl p-4 z-40">
-          <h3 className="font-bold text-gray-800 mb-3 text-lg">Indian Ocean Region</h3>
-          <div className="space-y-3 text-sm">
-            <div className="flex justify-between items-center">
-              <span className="text-gray-600">Active Floats:</span>
-              <span className="font-semibold text-blue-600 text-lg">37</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-gray-600">Avg Temperature:</span>
-              <span className="font-semibold text-orange-600">26.2°C</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-gray-600">Last Updated:</span>
-              <span className="font-medium text-green-600">2 hours ago</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Buoy Data Dashboard */}
-        <div className="absolute bottom-4 right-4 z-40">
-          <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-xl">
-            <BuoyDataDashboard />
-          </div>
+        {/* Cell 3 */}
+        <div
+          className={`bg-red-500 flex items-center justify-center text-white text-xl cursor-pointer transition-all duration-700`}
+          style={{
+            flexGrow: expanded ? 1 : 1.5, // Small when collapsed, equal when expanded
+            flexShrink: 0,
+            flexBasis: 0,
+          }}
+          onClick={() => setExpanded(!expanded)}
+        >
+          {expanded ? "Collapse Me" : "Expand Me (Cell 3)"}
         </div>
       </div>
     </div>
   );
-};
-
-export default Home;
+}
